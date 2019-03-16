@@ -10,11 +10,15 @@ public abstract class Field<T> {
 	}
 	
 	public T getValue() {
-		return value;
+		return this.value;
 	}
 	
-	public void setValue(String value) {
-		this.value = this.convertFromString(value);
+	public boolean setValue(String value) {
+		if(this.isValid(value)) {
+			this.value = this.convertFromString(value);
+			return true;
+		}
+		return false;
 	}
 	
 	public String getName() {

@@ -28,9 +28,17 @@ public class Main {
 		{	public boolean isValid(String value) { return(value.matches("[0-9]+")); }
 			public Integer convertFromString(String value) { return(Integer.parseInt(value)); }
 		});
+		form.add(new Field<String>("CEP")
+		{	public boolean isValid(String value) { return(value.matches("[0-9]{5}-[0-9]{3}")); }
+			public String convertFromString(String value) { return (value); }
+		});
 		form.add(new Field<Double>("Payment")
 		{	public boolean isValid(String value) { return(value.matches("[0-9]+\\.[0-9]{0,2}")); }
 			public Double convertFromString(String value) { return(Double.parseDouble(value)); }
+		});
+		form.add(new Field<String>("CPF") 
+		{	public boolean isValid(String value) { return value.matches("([0-9]{3}\\.){2}[0-9]{3}-[0-9]{2}");}
+			public String convertFromString(String value) {return (value);}
 		});
 		form.add(new Field<LocalDate>("Birthdate")
 		{	public boolean isValid(String value)
@@ -45,9 +53,9 @@ public class Main {
 			public String convertFromString(String value) { return(value); }
 		});
 		form.fill(new Scanner(System.in));
-//		System.out.println("Hello "+(("M".equals(form.get(1).getValue()))?"Sr":"Ms")+". "+form.get("Name").getValue()+"!");
-//		System.out.println("You born in "+form.get(4).getValue().toString()+" and are "+form.get(2).getValue().toString()+" years old.");
-//		System.out.println("With a 10% up, your payment will be $"+String.format("%.02f",(Double)form.get("Payment").getValue()*1.1)+".");
+		System.out.println("Hello "+(("M".equals(form.get(1).getValue()))?"Sr":"Ms")+". "+form.get("Name").getValue()+"!");
+		System.out.println("You born in "+form.get(4).getValue().toString()+" and are "+form.get(2).getValue().toString()+" years old.");
+		System.out.println("With a 10% up, your payment will be $"+String.format("%.02f",(Double)form.get("Payment").getValue()*1.1)+".");
 
 //		Exemplo de execução:
 //		====================

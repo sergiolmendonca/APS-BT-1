@@ -27,8 +27,10 @@ public class Form {
 	public void fill(Scanner scan) {
 		for(Field<?> item : fields) {
 			System.out.print(item.getName() + ": ");
-			item.setValue(scan.nextLine());
-			System.out.print(item.getValue());
+			while(!item.setValue(scan.nextLine())) {
+				System.out.print("Re-Enter " + item.getName() + ": ");
+			}
+			System.out.println(item.getValue());
 		}
 	}
 	
