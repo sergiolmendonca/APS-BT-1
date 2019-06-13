@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 //		Utilizando Template Method, desenhe o diagrama de classes e implemente as classes Field e Form de modo que o código funcione corretamente como no exemplo de execução.
 //		Considere ainda que:
 //		1) O set(String value) de um Field só pode ocorrer se isValid(value) == true, caso contrário, InvalidValueException deve ser lançada.
@@ -53,9 +53,14 @@ public class Main {
 			public String convertFromString(String value) { return(value); }
 		});
 		form.fill(new Scanner(System.in));
-		System.out.println("Hello "+(("M".equals(form.get(1).getValue()))?"Sr":"Ms")+". "+form.get("Name").getValue()+"!");
-		System.out.println("You born in "+form.get(4).getValue().toString()+" and are "+form.get(2).getValue().toString()+" years old.");
-		System.out.println("With a 10% up, your payment will be $"+String.format("%.02f",(Double)form.get("Payment").getValue()*1.1)+".");
+		try {
+			System.out.println("Hello "+(("M".equals(form.get(1).getValue()))?"Sr":"Ms")+". "+form.get("Name").getValue()+"!");
+			System.out.println("You born in "+form.get(6).getValue().toString()+" and are "+form.get(2).getValue().toString()+" years old.");
+			System.out.println("With a 10% up, your payment will be $"+String.format("%.02f",(Double)form.get("Payment").getValue()*1.1)+".");
+		}catch(FieldNotFoundException e) {
+			System.out.println(e);
+		}
+		
 
 //		Exemplo de execução:
 //		====================

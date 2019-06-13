@@ -3,6 +3,7 @@ package templateMethod;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Supplier;
 
 public class Form {
 
@@ -20,8 +21,12 @@ public class Form {
 		return this.fields.get(index);
 	}
 	
-	public Field<?> get(String name){
-		return this.fields.stream().filter(n -> name.equals(n.getName())).findFirst().orElse(null);
+	public Field<?> get(String name) throws FieldNotFoundException{
+		return this.fields
+				.stream()
+				.filter(n -> name.equals(n.getName()))
+					.findFirst()
+					.orElseThrow(() ->new FieldNotFoundException("Field " + name + " Not Found!"));
 	}
 	
 	public void fill(Scanner scan) {
